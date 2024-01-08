@@ -15,7 +15,7 @@ This workflow is configured to parse the `src` and `examples` subfolders inside 
 Markdown badge:
 
 ```markdown
-[![Compile Examples status](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/check-clang.yml/badge.svg)](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/check-clang.yml)
+[![Check Clang status](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/check-clang.yml/badge.svg)](https://github.com/REPO_OWNER/REPO_NAME/actions/workflows/check-clang.yml)
 ```
 
 Replace the `REPO_OWNER` and `REPO_NAME` placeholders in the URLs with the final repository owner and name ([example](https://raw.githubusercontent.com/arduino-libraries/ArduinoIoTCloud/master/README.md)).
