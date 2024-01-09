@@ -1,7 +1,7 @@
-# Source: https://github.com/aliphys/.github/blob/main/workflow-templates/check-clang.yml
+# Source: https://github.com/aliphys/Arduino_StyleGuide/blob/main/workflow-templates/check-clang.yml
 name: Check Clang
 
-# See: https://github.com/aliphys/.github/blob/main/workflow-templates/check-clang.md
+# See: https://github.com/aliphys/Arduino_StyleGuide/blob/main/workflow-templates/check-clang.md
 on:
     push:
     pull_request:
