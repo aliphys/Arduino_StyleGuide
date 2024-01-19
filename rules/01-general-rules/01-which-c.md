@@ -40,4 +40,8 @@ inline int sharedValue = 42;
 ```
 
 ## Reasoning
-All Arduino platforms support at least C++11, ensuring a consistent baseline. Developers can use efficient and readable C++11 features universally, while also taking advantage of more advanced features in newer standards when working with specific cores. Restricting assembly code (and compiler directives such as #DEFINE) to library source files (.h and .cpp) rather than example sketches ensures that the lower-level, platform-specific optimizations are confined to areas where they can be managed by experienced developers. This maintains the accessibility and simplicity of the Arduino platform for a wider audience, including hobbyists and educators. Additionally, the abstraction allows for easier use of the libraries increasing developer efficiency. 
+All Arduino platforms support at least C++11, ensuring a consistent baseline. Developers can use efficient and readable C++11 features universally, while also taking advantage of more advanced features in newer standards when working with specific cores. Restricting assembly code (and compiler directives such as #DEFINE) to library source files (.h and .cpp) rather than example sketches ensures that the lower-level, platform-specific optimizations are confined to areas where they can be managed by experienced developers. This maintains the accessibility and simplicity of the Arduino platform for a wider audience, including hobbyists and educators. Additionally, the abstraction allows for easier use of the libraries increasing developer efficiency.
+
+## Enforcement
+- Use `grep` to identify the minimum C++ version based on the `architectures=` key in `library.properties`
+- 

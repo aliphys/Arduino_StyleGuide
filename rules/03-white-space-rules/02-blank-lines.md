@@ -1,22 +1,45 @@
 # Rule
 - Single Statement per Line: No line of code should contain more than one statement.
 - Natural Blocks of Code: Insert a blank line before and after each natural block of code, such as loops, if...else, and switch statements, and blocks of consecutive declarations
-  - Exception is when only one command is run for the control statement
+- Exception is when only one command is run for the control statement, which can optionally be in a single line
 
 # Examples
+## Good example
 ```
 // Good Example
-for (int i = 0; i < 10; i++) {
-    // Do something
+void loop() {
+    int sensorValue = analogRead(A0);
+
+    if (sensorValue > 500) {
+        digitalWrite(LED_BUILTIN, HIGH);
+    } else {
+        digitalWrite(LED_BUILTIN, LOW);
+    }
+
+    delay(1000);
 }
 
-// Do next thing
+// Each statement on new line
+int sensorValue = analogRead(A0);
+Serial.println(sensorValue);
 
-// Needs Improvement
-for (int i = 0; i < 10; i++) {
-    // Do something
+// Exception for one command in control statement
+for (int i = 0; i < 10; i++) Serial.println(i);
+```
+## Bad example
+```
+void loop() {
+    int sensorValue = analogRead(A0);
+    if (sensorValue > 500) {
+        digitalWrite(LED_BUILTIN, HIGH);
+    } else {
+        digitalWrite(LED_BUILTIN, LOW);
+    }
+    delay(1000);
 }
-// Do next thing
+
+// Multiple statement on single line
+int sensorValue = analogRead(A0); Serial.println(sensorValue);
 ```
 
 # Reasoning

@@ -1,6 +1,7 @@
-# "Check Clang" workflow
 
-Workflow file: [check-clang.yml](check-clang.yml)
+# "Check General Rules" workflow
+
+Workflow file: [check-general-rules.yml](check-general-rules.yml)
 
 Uses [`jidicula/clang-format-action`](https://github.com/jidicula/clang-format-action) to parse the sketches using version 17 of the clang-format tool. The [`.clang-format`](.clang-format) configuration file must be located inside the root directory of the library.
 

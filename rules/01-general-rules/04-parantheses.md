@@ -26,3 +26,6 @@ while (motorSpeed > 0 && motorSpeed < maxSpeed || emergencyStop) {
 
 # Reasoning
 In complex expressions, especially those involving logical AND (&&) and OR (||) operators, the execution order can be ambiguous without parentheses. This ambiguity can lead to unintended behaviour and bugs in the library. When explicitly surrounding operands in logical expressions with parentheses, the intended order of evaluation is made clear. This is crutial for ensure long-term maintaince of libraries.
+
+# Enforcement
+During PR review

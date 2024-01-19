@@ -36,3 +36,23 @@ else
 
 # Reasoning
 The One True Brace style increases readablity by specifying the start of code blocks. It is also space efficient, reducing vertical scrolling that can occur when brackets are on a seperate line. Excluding single and empty statements from this rule allows for more concise code, especially for simple conditional actions or intentional no-operations.
+
+# Enforcement
+The following clang-format configurations, enforce the brace wrapping
+```
+BraceWrapping:
+  AfterClass:      false
+  AfterControlStatement: false   
+  AfterEnum:       false
+  AfterFunction:   false         
+  AfterNamespace:  false
+  AfterStruct:     false
+  AfterUnion:      false
+  AfterExternBlock: false
+  BeforeCatch:     false         
+  BeforeElse:      false         
+  IndentBraces:    false
+AllowShortBlocksOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+```

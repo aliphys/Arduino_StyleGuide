@@ -5,8 +5,9 @@
 - Readme: Markdown files are exempted from the indentation rules
 
 # Examples
+## Good Example
 ```
-// Good Example - General Indentation
+// Indentation with four spaces
 for (int i = 0; i < 10; i++) {
     doSomething();
 }
@@ -24,6 +25,28 @@ switch (sensorType) {
 // Long Line Indentation
 longFunctionCallWithLotsOfParameters(param1, param2, param3,
                                      param4, param5, param6);
+```
+
+## Bad Example
+```
+// Indentation with incorrect spaces
+for (int i = 0; i < 10; i++) {
+         doSomething();
+}
+
+// Misaligned Switch Statement Indentation
+switch (sensorType) {
+        case TEMPERATURE:
+        readTemperatureSensor();
+        break;
+        case PRESSURE:
+        readPressureSensor();
+        break;
+}
+
+// Misaligned Long Line Indentation
+longFunctionCallWithLotsOfParameters(param1, param2, param3,
+                                        param4, param5, param6);
 ```
 
 # Reasoning

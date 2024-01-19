@@ -7,15 +7,16 @@
 - Ternary Operator: The ? and : characters should each always be preceded and followed by one space.
 
 # Examples
+## Good example
 ```
-// Good Example
 if (sensorValue > threshold) {
     action();
 }
 
 int result = a + b;
-
-// Needs Improvement
+```
+## Bad example
+```
 if(sensorValue>threshold){
     action();
 }

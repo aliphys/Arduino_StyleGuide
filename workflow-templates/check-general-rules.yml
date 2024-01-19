@@ -1,0 +1,80 @@
+# Source: https://github.com/aliphys/Arduino_StyleGuide/blob/main/workflow-templates/check-general-rules.yml
+name: Check General Rules
+
+# See: https://github.com/aliphys/Arduino_StyleGuide/blob/main/workflow-templates/check-general-rules.md
+on:
+    push:
+    pull_request:
+    schedule:
+      # Run every Tuesday at 8 AM UTC to catch breakage caused by new rules added to Arduino Lint.
+      - cron: "0 8 * * TUE"
+    workflow_dispatch:
+    repository_dispatch:
+
+job:
+  parse-Cplusplus-version:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Read library.properties
+      id: read_properties
+      run: |
+        content=$(cat library.properties)
+        echo "library_properties=$content" >> $GITHUB_ENV
+
+    - name: Determine C++ Version
+      id: cpp_version
+      run: |
+        if grep -q "architectures=*" <<< "$library_properties"; then
+          echo "CPP_VERSION=C++11" >> $GITHUB_ENV
+        elif grep -q "mbed_opta" <<< "$library_properties"; then
+          echo "CPP_VERSION=C++14" >> $GITHUB_ENV
+        elif grep -q "mbed_portenta" <<< "$library_properties"; then
+          echo "CPP_VERSION=C++14" >> $GITHUB_ENV
+        elif grep -q "renesas_portenta" <<< "$library_properties"; then
+          echo "CPP_VERSION=C++17" >> $GITHUB_ENV
+        else
+          echo "CPP_VERSION=Unknown" >> $GITHUB_ENV
+          exit 1
+        fi
+
+    - name: Output C++ Version
+      run: echo "C++ Version is $CPP_VERSION"
+
+  line-length-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Install Clang-Format
+      run: sudo apt-get install -y clang-format
+
+    - name: Check Line Length
+      run: |
+        find . -name '*.cpp' -o -name '*.h' -o -name '*.ino' | while read file; do
+          clang-format -style="{ColumnLimit: 120}" "$file" | diff "$file" -
+          if [ $? -ne 0 ]; then
+            echo "File $file does not meet the line length requirement."
+            exit 1
+          fi
+        done
+  check-cast-comments:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Check for Casts Without Comments
+      run: |
+        # Find all .cpp, .h, and .ino files and check for casts without comments
+        files=$(find . -name '*.cpp' -o -name '*.h' -o -name '*.ino')
+        for file in $files; do
+            # This regex looks for cast patterns not followed by a comment on the same line
+            if grep -P "(static_cast<.*?>|reinterpret_cast<.*?>|\(.*?\)).*(?<!//.*)" $file; then
+                echo "Error: Found a cast without a comment in $file"
+                exit 1
+            fi
+        done
+        echo "All casts are properly commented."
