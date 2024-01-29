@@ -11,7 +11,7 @@ on:
     workflow_dispatch:
     repository_dispatch:
 
-job:
+jobs:
   parse-Cplusplus-version:
     runs-on: ubuntu-latest
 
