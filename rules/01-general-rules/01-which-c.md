@@ -43,5 +43,24 @@ inline int sharedValue = 42;
 All Arduino platforms support at least C++11, ensuring a consistent baseline. Developers can use efficient and readable C++11 features universally, while also taking advantage of more advanced features in newer standards when working with specific cores. Restricting assembly code (and compiler directives such as #DEFINE) to library source files (.h and .cpp) rather than example sketches ensures that the lower-level, platform-specific optimizations are confined to areas where they can be managed by experienced developers. This maintains the accessibility and simplicity of the Arduino platform for a wider audience, including hobbyists and educators. Additionally, the abstraction allows for easier use of the libraries increasing developer efficiency.
 
 ## Enforcement
-- Use `grep` to identify the minimum C++ version based on the `architectures=` key in `library.properties`
-- 
+```
+# Rule 01: determine the C++ version based on the library properties
+def determine_cpp_version(library_properties):
+    try:
+        if "architectures=\\*" in library_properties:
+            print("✅ Supported architecture compliant with up to C++11")
+            return "C++11"
+        elif "renesas_portenta" in library_properties:
+            print("✅ Supported architecture compliant with up to C++17")
+            return "C++17"
+        elif "mbed_opta" in library_properties:
+            print("✅ Supported architecture compliant with up to C++14")
+            return "C++14"
+        elif "mbed_portenta" in library_properties:
+            print("✅ Supported architecture compliant with up to C++14")
+            return "C++14"
+        else:
+            raise Exception(f"Error: The architecture is not specified.")
+    except Exception as e:
+        print(e)
+```

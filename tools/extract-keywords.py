@@ -31,10 +31,10 @@ except json.JSONDecodeError as e:
     exit(1)
 
 # Preparing the CSV data
-csv_data = [["Category", "Keyword"]]
+csv_data = [["Keyword"]]
 for category, keywords in arduino_kw_dict.items():
     for keyword in keywords:
-        csv_data.append([category, keyword])
+        csv_data.append([keyword])
 
 # Define the CSV file path
 script_dir = os.path.dirname(os.path.realpath(__file__))  # Directory of the script
