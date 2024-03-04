@@ -17,6 +17,3 @@ register int counter; // Avoid using 'register'
 
 # Reasoning
 The `auto` keyword, while prohibited in many C style guides is permissible in the Arduino Library Style Guide. It is included in C++11 onwards and should be possible to use across all Arduino Cores. The GCC compilers are (typically) better at optimizing code than manual attempts using keywords like register.
-
-# Enforcement
-Extract protected keywords from https://raw.githubusercontent.com/highlightjs/highlight.js/063876f86c53713a665de0b17b8d795ae5fce0a1/src/languages/arduino.js . Then, check if any variables are initialised with these protected keywords

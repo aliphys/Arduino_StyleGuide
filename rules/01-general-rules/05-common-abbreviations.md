@@ -16,6 +16,3 @@ bool powerLightEmittingDiode; // no need to write LED in full
 
 # Reasoning
 Limit abbreviations and acronyms in Arduino code, except for widely recognized ones, ensures clarity and minimizes ambiguity. Clear and descriptive names, enhance understandability and readability, making the code more accessible to developers of varying expertise including new contributors.
-
-# Enforcement
-Identified via manual review

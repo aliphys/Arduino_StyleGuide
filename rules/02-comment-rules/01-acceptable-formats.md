@@ -56,7 +56,3 @@ enum class IndoorAirQualitySensorMode {
 # Reasoning
 
 Use of standardised documentation inside the code, not only help developers with understanding and maintaining the code, but also forms the basis of generated documentation.
-
-# Enforcement
-
-Via human checks. 
