@@ -1,0 +1,74 @@
+# Source: https://github.com/aliphys/Arduino_StyleGuide/blob/main/workflow-templates/check-comment-rules.yml
+name: Check Comment Rules
+
+# See: https://github.com/aliphys/Arduino_StyleGuide/blob/main/workflow-templates/check-comment-rules.md
+on:
+    push:
+    pull_request:
+    schedule:
+      # Run every Tuesday at 8 AM UTC to catch breakage caused by new rules added to Arduino Lint.
+      - cron: "0 8 * * TUE"
+    workflow_dispatch:
+    repository_dispatch:
+
+jobs:
+  check-readme-exist:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Check for Main README.md
+      run: |
+        if [ ! -f README.md ]; then
+          echo "Error: README.md not found in the main directory."
+          exit 1
+        fi
+
+    - name: Check for docs/README.md
+      run: |
+        if [ ! -f docs/README.md ]; then
+          echo "Error: README.md not found in the docs directory."
+          exit 1
+        fi
+
+    - name: Check for docs/assets folder and docs/api.md
+      run: |
+        if [ ! -d docs/assets ] || [ ! -f docs/api.md ]; then
+          echo "Error: docs/assets folder or docs/api.md file is missing."
+          exit 1
+        fi
+
+    - name: Success Message
+      run: echo "All required documentation files and folders are present."
+  
+  check-readme-essentials:
+    runs-on: ubuntu-latest
+
+    - name: Check String in Main README.md
+      run: |
+        if ! grep -q "📖 For more information about this library please read the documentation \[here\](./docs/)" README.md; then
+          echo "Error: Redirect string not found in README.md"
+          exit 1
+        fi
+
+    - name: Check Headers in docs/README.md
+      run: |
+        if ! grep -q "# Features" docs/README.md; then
+          echo "Error: 'Features' header not found in docs/README.md"
+          exit 1
+        fi
+        if ! grep -q "# Usage" docs/README.md; then
+          echo "Error: 'Usage' header not found in docs/README.md"
+          exit 1
+        fi
+        if ! grep -q "# API" docs/README.md; then
+          echo "Error: 'API' header not found in docs/README.md"
+          exit 1
+        fi
+        if ! grep -q "# License" docs/README.md; then
+          echo "Error: 'License' header not found in docs/README.md"
+          exit 1
+        fi
+
+

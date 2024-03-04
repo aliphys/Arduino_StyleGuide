@@ -1,4 +1,4 @@
-# "Check Clang" workflow (private repos)
+# "Check Clang" workflow
 
 Workflow file: [check-clang.yml](check-clang.yml)
 

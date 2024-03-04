@@ -2,20 +2,21 @@
 - Death to Tabs!: The tab character (ASCII 0x09) shall never appear within any source code or sketch file.
 
 # Example
+## Good example
 ```
-Use spaces for indentation instead of tabs:
-// Good Example - Using spaces
+// Using spaces
 void setup() {
     initializeSensors();
     startCommunication();
 }
-
-// Needs Improvement - Using tabs
+```
+## Bad example
+```
+// Tabs not allowed for indentation
 void setup() {
 	initializeSensors();
 	startCommunication();
-
-    }
+}
 ```
 
 # Reasoning
